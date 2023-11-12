@@ -1,5 +1,5 @@
-import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:htodo/pages/bottom_sheet/bottom_sheet.dart';
 import 'package:htodo/pages/home_view/home_view.dart';
 import 'package:htodo/pages/settings_view/settings_view.dart';
 
@@ -7,7 +7,7 @@ import 'package:htodo/pages/settings_view/settings_view.dart';
 class HomeScreen extends StatefulWidget {
   static const routeName = "Home";
 
-   HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,8 +16,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectIndex = 0 ;
   List<Widget> pages =[
-    HomeView(),
-    SettingsView(),
+    const HomeView(),
+    const SettingsView(),
   ];
 
   @override
@@ -26,17 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       floatingActionButton: GestureDetector(
         onTap: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => Container(),
-          );
+          showAddTaskBottomSheet();
         },
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.white,
           ),
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: Container(
             width: 50,
             height: 50,
@@ -44,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
               shape: BoxShape.circle,
               color: theme.primaryColor,
             ),
-            child: Icon(Icons.add,
-            color: Colors.white,
+            child: const Icon(Icons.add,
+              color: Colors.white,
 
             ),
           ),
@@ -56,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: pages[selectIndex],
       bottomNavigationBar:
       BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: BottomNavigationBar(
           currentIndex: selectIndex,
@@ -83,5 +80,18 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-    }
+  }
+  void showAddTaskBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(25),
+            topLeft: Radius.circular(25),
+          )
+      ),
+      builder: (context) =>  BottomSheetWidget(),
+
+    );
+  }
 }

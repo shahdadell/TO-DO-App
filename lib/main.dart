@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:htodo/HomeScreen/HomeScreen.dart';
 import 'package:htodo/pages/Splash/Splash_screen.dart';
+import 'package:htodo/pages/login/login_view1.dart';
+import 'package:htodo/pages/register/register.dart';
 import 'Theme/Theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -30,11 +32,12 @@ class MyApp extends StatelessWidget {
       routes: {
         Splash.routeName:(context)=> Splash(),
         HomeScreen.routeName:(context)=>  HomeScreen(),
+        LoginView.routeName:(context)=>  LoginView(),
+        RegisterView.routeName:(context)=>  RegisterView()
       },
       initialRoute: Splash.routeName,
 
     );
   }
 }
-
 
